@@ -1,0 +1,3 @@
+org/cytoscape/sample/internal/CreateTableTask.class
+org/cytoscape/sample/internal/CreateTableTaskFactory.class
+org/cytoscape/sample/internal/CyActivator.class

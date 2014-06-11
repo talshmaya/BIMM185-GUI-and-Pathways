@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Built-By: tal
+Build-Jdk: 1.6.0_30
+Bundle-Version: 1.0
+Tool: Bnd-1.15.0
+Bundle-Name: Sample App - Control Panel
+Bnd-LastModified: 1402524275128
+Bundle-Activator: org.cytoscape.sample.internal.CyActivator
+Created-By: Apache Maven Bundle Plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.cytoscape.Control-Panel
+Import-Package: javax.swing,org.cytoscape.application.swing;version="[
+ 3.0,4)",org.cytoscape.service.util;version="[3.0,4)",org.osgi.framewo
+ rk;version="[1.5,2)"
+
