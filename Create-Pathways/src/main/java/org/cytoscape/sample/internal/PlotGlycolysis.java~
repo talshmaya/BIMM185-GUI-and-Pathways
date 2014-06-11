@@ -123,25 +123,25 @@ public class PlotGlycolysis extends AbstractTask {
         View<CyNode> nodeview10 = netView.getNodeView(pyruvate);
         LayoutNode thelayoutnode10 = new LayoutNode(nodeview10, 0, null);
 
-		thelayoutnode.setLocation(0,-170);
+		thelayoutnode.setLocation(0,-150);
 		thelayoutnode.moveToLocation();
 		thelayoutnode2.setLocation(0,-120);
 		thelayoutnode2.moveToLocation();
-		thelayoutnode3.setLocation(0,-70);
+		thelayoutnode3.setLocation(0,-90);
 		thelayoutnode3.moveToLocation();
-		thelayoutnode4.setLocation(-60,-50);
+		thelayoutnode4.setLocation(-60,-60);
 		thelayoutnode4.moveToLocation();
-		thelayoutnode5.setLocation(60,-50);
+		thelayoutnode5.setLocation(60,-60);
 		thelayoutnode5.moveToLocation();
 		thelayoutnode6.setLocation(-70,0);
 		thelayoutnode6.moveToLocation();
-		thelayoutnode7.setLocation(-100,40);
+		thelayoutnode7.setLocation(-80,30);
 		thelayoutnode7.moveToLocation();
-		thelayoutnode8.setLocation(-120,80);
+		thelayoutnode8.setLocation(-100,60);
 		thelayoutnode8.moveToLocation();
-		thelayoutnode9.setLocation(-140,120);
+		thelayoutnode9.setLocation(-100,90);
 		thelayoutnode9.moveToLocation();
-		thelayoutnode10.setLocation(0,140);
+		thelayoutnode10.setLocation(0,130);
 		thelayoutnode10.moveToLocation();
 
 		boolean destroyNetwork = false;

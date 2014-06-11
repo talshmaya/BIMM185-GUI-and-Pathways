@@ -1,3 +1,7 @@
+org/cytoscape/sample/internal/PlotGlycolysisFactory.class
+org/cytoscape/sample/internal/PlotPhoto.class
 org/cytoscape/sample/internal/PlotGlycolysis.class
-org/cytoscape/sample/internal/CreateNetworkTaskFactory.class
 org/cytoscape/sample/internal/CyActivator.class
+org/cytoscape/sample/internal/PlotTCAFactory.class
+org/cytoscape/sample/internal/PlotPhotoFactory.class
+org/cytoscape/sample/internal/PlotTCA.class

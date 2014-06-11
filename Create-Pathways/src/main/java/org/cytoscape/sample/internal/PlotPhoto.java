@@ -1,0 +1,115 @@
+package org.cytoscape.sample.internal;
+
+import java.lang.Object;
+
+import org.cytoscape.model.CyNetwork;
+import org.cytoscape.model.CyNetworkFactory;
+import org.cytoscape.model.CyNetworkManager;
+import org.cytoscape.model.CyNode;
+import org.cytoscape.session.CyNetworkNaming;
+import org.cytoscape.work.AbstractTask;
+import org.cytoscape.work.TaskMonitor;
+import org.cytoscape.view.model.CyNetworkView;
+import org.cytoscape.view.model.View;
+import org.cytoscape.event.CyEventHelper;
+import org.cytoscape.view.model.CyNetworkViewFactory;
+import org.cytoscape.view.model.CyNetworkViewManager;
+import org.cytoscape.view.vizmap.*;
+
+import org.cytoscape.view.layout.LayoutNode;
+import org.cytoscape.view.vizmap.mappings.*;
+import org.cytoscape.view.presentation.property.*;
+
+
+public class PlotPhoto extends AbstractTask {
+	
+	private final CyNetworkManager netMgr;
+	private final CyNetworkFactory cnf;
+	private final CyNetworkNaming namingUtil; 
+	private final CyEventHelper eventHelper;
+	private CyNetworkViewFactory netViewFactory;
+	private CyNetworkViewManager netViewMgr;
+	private CyNetworkView netView; 
+
+
+
+	public PlotPhoto(final CyNetworkManager netMgr, final CyNetworkNaming namingUtil,final CyNetworkFactory cnf,final CyEventHelper eventHelper,CyNetworkViewFactory netViewFactory,
+                             CyNetworkViewManager netViewMgr,CyNetworkView netView){
+		this.netMgr = netMgr;
+		this.cnf = cnf;
+		this.namingUtil = namingUtil;
+		this.eventHelper=eventHelper;
+		this.netViewFactory=netViewFactory;
+		this.netViewMgr=netViewMgr;
+		this.netView=netView;
+
+	}
+	
+	public void run(TaskMonitor monitor) {
+		// Create an empty network
+
+		CyNetwork myNet = cnf.createNetwork();
+		myNet.getRow(myNet).set(CyNetwork.NAME, 
+				      namingUtil.getSuggestedNetworkTitle("C4 photosynthetic carbon assimilation cycle"));
+		netMgr.addNetwork(myNet);
+		CyNetworkView netView = netViewFactory.createNetworkView(myNet);
+		netViewMgr.addNetworkView(netView);
+
+		// Add two nodes to the network
+		CyNode oxaloacetate = myNet.addNode();
+		CyNode phosphoenolpyruvate = myNet.addNode();
+		CyNode pyruvate=myNet.addNode();
+
+		CyNode CO2=myNet.addNode();
+		CyNode  S_malate=myNet.addNode();
+
+
+		// set name for new nodes
+		myNet.getDefaultNodeTable().getRow(oxaloacetate.getSUID()).set("name", "Oxaloacetate");
+		myNet.getDefaultNodeTable().getRow(phosphoenolpyruvate.getSUID()).set("name", "Phosphoenolpyruvate");
+		myNet.getDefaultNodeTable().getRow(pyruvate.getSUID()).set("name","Pyruvate");
+
+		myNet.getDefaultNodeTable().getRow(CO2.getSUID()).set("name","CO2");
+		myNet.getDefaultNodeTable().getRow( S_malate.getSUID()).set("name","(S)-malate");
+
+		// Add an edge
+		myNet.addEdge(oxaloacetate, S_malate,true);
+		myNet.addEdge(pyruvate,phosphoenolpyruvate,false);
+		myNet.addEdge(pyruvate,CO2,true);
+
+		myNet.addEdge(S_malate,pyruvate,true);
+		myNet.addEdge( phosphoenolpyruvate,oxaloacetate, true);
+		
+		eventHelper.flushPayloadEvents();
+		netViewMgr.addNetworkView(netView);
+		View<CyNode> nodeview = netView.getNodeView(oxaloacetate);
+        LayoutNode thelayoutnode = new LayoutNode(nodeview,1, null);
+        View<CyNode> nodeview2 = netView.getNodeView(phosphoenolpyruvate);
+        LayoutNode thelayoutnode2 = new LayoutNode(nodeview2, 0, null);
+        View<CyNode> nodeview3 = netView.getNodeView(pyruvate);
+        LayoutNode thelayoutnode3 = new LayoutNode(nodeview3, 0, null);
+        View<CyNode> nodeview4 = netView.getNodeView(CO2);
+        LayoutNode thelayoutnode4 = new LayoutNode(nodeview4, 0, null);
+        View<CyNode> nodeview10 = netView.getNodeView( S_malate);
+        LayoutNode thelayoutnode10 = new LayoutNode(nodeview10, 0, null);
+
+		thelayoutnode3.setLocation(0,-150);
+		thelayoutnode3.moveToLocation();
+		thelayoutnode2.setLocation(100,0);
+		thelayoutnode2.moveToLocation();
+		thelayoutnode4.setLocation(-40,-170);
+		thelayoutnode4.moveToLocation();
+		thelayoutnode.setLocation(0,100);
+		thelayoutnode.moveToLocation();
+		thelayoutnode10.setLocation(-100,0);
+		thelayoutnode10.moveToLocation();
+
+		boolean destroyNetwork = false;
+		if (destroyNetwork){
+			// Destroy it
+			 netMgr.destroyNetwork(myNet);			
+		}
+	}
+
+}
+

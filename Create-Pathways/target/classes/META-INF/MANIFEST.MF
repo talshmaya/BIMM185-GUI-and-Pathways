@@ -4,7 +4,7 @@ Build-Jdk: 1.6.0_30
 Bundle-Version: 1.0
 Tool: Bnd-1.15.0
 Bundle-Name: Plot Pathways
-Bnd-LastModified: 1402387023961
+Bnd-LastModified: 1402477468651
 Bundle-Activator: org.cytoscape.sample.internal.CyActivator
 Created-By: Apache Maven Bundle Plugin
 Bundle-ManifestVersion: 2
@@ -13,6 +13,5 @@ Import-Package: org.cytoscape.event;version="[3.0,4)",org.cytoscape.mo
  del;version="[3.0,4)",org.cytoscape.service.util;version="[3.0,4)",or
  g.cytoscape.session;version="[3.0,4)",org.cytoscape.view.layout;versi
  on="[3.0,4)",org.cytoscape.view.model;version="[3.0,4)",org.cytoscape
- .view.vizmap;version="[3.0,4)",org.cytoscape.work;version="[3.0,4)",o
- rg.osgi.framework;version="[1.5,2)"
+ .work;version="[3.0,4)",org.osgi.framework;version="[1.5,2)"
 
